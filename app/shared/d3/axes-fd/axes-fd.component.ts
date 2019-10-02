@@ -2,9 +2,9 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 
 export enum GrowthEnum {
-  Up = "Up.png",
-  Equals = "Equals.png",
-  Down = "Down.png"
+  Up = "~/app/Up.png",
+  Equals = "~/app/Equals.png",
+  Down = "~/app/Down.png"
 }
 
 export class ObjectResult {
