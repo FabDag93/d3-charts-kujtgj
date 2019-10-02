@@ -2,9 +2,9 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 
 export enum GrowthEnum {
-  Up = '',
-  Equals = '',
-  Down = ''
+  Up = "app/img/Up.png",
+  Equals = "Equals.png",
+  Down = "Down.png"
 }
 
 export class ObjectResult {
@@ -74,7 +74,7 @@ export class AxesFDComponent implements OnInit {
       .attr("width", 1200)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
-        .attr('class', 'point-container')
+        .attr("class","point-container")
         .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
     
@@ -93,8 +93,6 @@ export class AxesFDComponent implements OnInit {
                   .tickFormat(d3.timeFormat("%Y"));
 
     let yAxis = d3.axisLeft(y);
-
-
 
     // Step 3: append xaxis and yaxis on the chart
     svg
@@ -141,12 +139,25 @@ export class AxesFDComponent implements OnInit {
       .attr("y", "0")
       .attr("height", "1")
       .attr("width", "1")
-      .append("image")
+      .append("svg:image")
         .attr("x", "0")
         .attr("y", "0")
         .attr("height", "70px")
         .attr("width", "70px")
-        .attr("xlink:href", function(d) {return d.img})
+        .attr("xlink:href", function(d) 
+        { 
+          switch(d.growth){
+            case GrowthEnum.Up:
+              return GrowthEnum.Up
+            break;
+            case GrowthEnum.Equals:
+              return GrowthEnum.Equals
+            break;
+            case GrowthEnum.Down:
+              return GrowthEnum.Down
+            break;
+          }
+        })
 
     
     let point = g.selectAll(".point")
@@ -154,7 +165,7 @@ export class AxesFDComponent implements OnInit {
       .enter()
         .append("circle")
         .attr("class", "point")
-        .attr("r", 15)
+        .attr("r", 30)
         .attr("cx", function(d) {
           return x(d.date); 
         })
@@ -164,9 +175,11 @@ export class AxesFDComponent implements OnInit {
         .attr("x", 10)
         .attr("y", -22)
         .style("fill", function(d) {
-          if (d.img) {
+          if (d.growth) {
             return ("url(#" + d.id + ")");
           }
         });
+    
+    
   }
 }
