@@ -12,6 +12,7 @@ import { BarchartSimpleWAxes } from './shared/d3/barchart-simplewaxes/barchart-s
 import { Vbarchart2Filter1 } from './shared/d3/vbarchart2-filter1/vbarchart2-filter1.component';
 import { AxesFDComponent } from './shared/d3/axes-fd/axes-fd.component';
 
+
 @NgModule({
   imports:      [ BrowserModule, FormsModule ],
   declarations: 
